@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-navy-900 text-offwhite font-sans antialiased;
+  }
+
+  /* Sichtbarer, konsistenter Fokuszustand fuer Tastaturbedienung */
+  :focus-visible {
+    @apply outline-none ring-2 ring-signal-400 ring-offset-2 ring-offset-navy-900 rounded;
+  }
+
+  /* Headings duerfen kraftvoll sein, aber nicht martialisch */
+  h1,
+  h2,
+  h3 {
+    @apply font-semibold tracking-tight text-balance;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-content px-5 sm:px-8;
+  }
+
+  .section {
+    @apply py-20 sm:py-28 scroll-mt-24;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-sm font-medium uppercase tracking-widest text-signal-300;
+  }
+
+  .card {
+    @apply rounded-2xl border border-white/5 bg-anthracite-800/70 p-6 shadow-lg shadow-black/20;
+  }
+}
+
+/* Respektiere die Nutzerpraeferenz: keine Bewegung */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
