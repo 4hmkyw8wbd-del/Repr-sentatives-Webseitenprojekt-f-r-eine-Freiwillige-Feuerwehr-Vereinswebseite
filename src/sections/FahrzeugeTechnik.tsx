@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { SectionHeading } from '../components/ui/SectionHeading'
 import { Reveal } from '../components/ui/Reveal'
 import { Icon } from '../components/ui/Icon'
-import { fahrzeuge } from '../data/fahrzeuge'
+import { fahrzeuge, geraete } from '../data/fahrzeuge'
 
 export function FahrzeugeTechnik() {
   const [aktiv, setAktiv] = useState(fahrzeuge[0].id)
@@ -88,7 +88,41 @@ export function FahrzeugeTechnik() {
                 </span>
               ))}
             </div>
+
+            <div className="mt-6 flex items-start gap-3 rounded-lg border border-signal-400/20 bg-signal-400/5 p-4">
+              <Icon name="kompass" className="mt-0.5 h-5 w-5 shrink-0 text-signal-300" />
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wide text-signal-300">
+                  Wusstest du?
+                </p>
+                <p className="mt-1 text-sm text-offwhite/80">{fahrzeug.fakt}</p>
+              </div>
+            </div>
           </Reveal>
+        </div>
+
+        {/* Gerätekunde – wissenswerte Fakten über typische Ausrüstung */}
+        <div className="mt-16">
+          <h3 className="text-center text-xl font-semibold text-white">
+            Gerätekunde – was steckt an Bord?
+          </h3>
+          <p className="mx-auto mt-2 max-w-2xl text-center text-sm text-offwhite/65">
+            Hinter jedem Einsatz steht durchdachte Technik. Ein kleiner Einblick in
+            Geräte, die im Ernstfall den Unterschied machen.
+          </p>
+          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {geraete.map((g, i) => (
+              <Reveal as="li" key={g.name} delay={i * 60}>
+                <div className="card h-full">
+                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-fire-500/10 text-fire-400">
+                    <Icon name={g.icon} className="h-6 w-6" />
+                  </span>
+                  <h4 className="mt-4 font-semibold text-white">{g.name}</h4>
+                  <p className="mt-2 text-sm text-offwhite/65">{g.text}</p>
+                </div>
+              </Reveal>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

@@ -53,9 +53,15 @@ export function HeroVisual() {
   return (
     <div className="relative aspect-square w-full max-w-md mx-auto">
       {enable3D ? (
-        <Suspense fallback={<HeroFallback />}>
-          <HeroScene />
-        </Suspense>
+        <>
+          <Suspense fallback={<HeroFallback />}>
+            <HeroScene />
+          </Suspense>
+          {/* Interaktionshinweis + Fiktiv-Kennzeichnung */}
+          <span className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-navy-900/70 px-3 py-1 text-xs text-offwhite/70 ring-1 ring-white/10 backdrop-blur">
+            Ziehen zum Drehen · stilisiertes 3D-Modell (fiktiv)
+          </span>
+        </>
       ) : (
         <HeroFallback />
       )}

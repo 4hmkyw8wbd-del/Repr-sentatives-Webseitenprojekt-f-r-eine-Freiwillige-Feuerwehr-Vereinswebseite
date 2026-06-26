@@ -11,6 +11,7 @@ export type Fahrzeug = {
   beladung: string[]
   besonderheiten: string
   szenarien: string[]
+  fakt: string
 }
 
 export const fahrzeuge: Fahrzeug[] = [
@@ -32,6 +33,7 @@ export const fahrzeuge: Fahrzeug[] = [
     besonderheiten:
       'Vielseitig einsetzbar – vereint Löschtechnik und Rettungsgerät in einem Fahrzeug.',
     szenarien: ['Wohnungsbrand', 'Verkehrsunfall', 'Sturmschäden'],
+    fakt: 'Der eingebaute Löschwassertank fasst rund 2.000 Liter – damit kann sofort gelöscht werden, noch bevor eine Wasserversorgung über Hydranten aufgebaut ist.',
   },
   {
     id: 'mtw',
@@ -49,6 +51,7 @@ export const fahrzeuge: Fahrzeug[] = [
     besonderheiten:
       'Flexibles Logistikfahrzeug – auch für Übungen und Veranstaltungen der Nachwuchsabteilungen.',
     szenarien: ['Personaltransport', 'Übungsdienste', 'Veranstaltungen'],
+    fakt: 'Der MTW ist oft das erste Fahrzeug, das die Jugendfeuerwehr kennenlernt – hier beginnt für viele die Begeisterung für die Feuerwehr.',
   },
   {
     id: 'anhaenger',
@@ -66,5 +69,46 @@ export const fahrzeuge: Fahrzeug[] = [
     besonderheiten:
       'Schnell verfügbares Zusatzmaterial bei länger andauernden Unwetterlagen.',
     szenarien: ['Starkregen', 'Überflutung', 'Längere Einsatzlagen'],
+    fakt: 'Eine leistungsfähige Tauchpumpe fördert mehrere hundert Liter Wasser pro Minute – so werden vollgelaufene Keller in kurzer Zeit wieder frei.',
+  },
+]
+
+export type Geraet = {
+  icon: IconName
+  name: string
+  text: string
+}
+
+/** „Gerätekunde" – wissenswerte Fakten über typische Ausrüstung. */
+export const geraete: Geraet[] = [
+  {
+    icon: 'atemschutz',
+    name: 'Atemschutzgerät',
+    text: 'Ermöglicht das Vorgehen in verrauchten Räumen. Die Pressluftflasche reicht je nach Belastung für rund 20–30 Minuten Arbeitszeit.',
+  },
+  {
+    icon: 'rettungsgeraet',
+    name: 'Hydraulischer Rettungssatz',
+    text: 'Schere und Spreizer entwickeln mehrere Tonnen Kraft – damit lassen sich nach Unfällen Fahrzeugteile schonend öffnen.',
+  },
+  {
+    icon: 'strahlrohr',
+    name: 'Strahlrohr',
+    text: 'Formt den Wasserstrahl – vom kräftigen Vollstrahl bis zum feinen Sprühnebel, der besonders gut Wärme bindet.',
+  },
+  {
+    icon: 'funk',
+    name: 'Digitalfunk',
+    text: 'Hält den Trupp in Verbindung mit der Einsatzleitung – abhörsicher und auch bei vielen gleichzeitigen Gesprächen zuverlässig.',
+  },
+  {
+    icon: 'tropfen',
+    name: 'Wärmebildkamera',
+    text: 'Macht Hitzequellen und Personen im dichten Rauch sichtbar – ein wichtiges Hilfsmittel bei der Personensuche.',
+  },
+  {
+    icon: 'hydrant',
+    name: 'Hydrant & Schläuche',
+    text: 'Über das Hydrantennetz wird die Wasserversorgung aufgebaut. Eine einzelne Schlauchlänge misst meist 20 Meter.',
   },
 ]

@@ -31,9 +31,12 @@ Institutionen professionell, seriös und wirkungsorientiert umgesetzt werden kö
 
 ## Umgesetzte Highlights
 
-- **Interaktives 3D-Hero** (react-three-fiber): stilisiertes Schutzschild mit
-  umlaufenden Einsatzsymbolen, dezenter Cursor-Parallax – lazy geladen, mit
-  SVG-Fallback und Respektierung von `prefers-reduced-motion`.
+- **Interaktives 3D-Hero** (react-three-fiber): frei drehbares, stilisiertes
+  Feuerwehrfahrzeug mit rotierendem Blaulicht, Leiter und Kontaktschatten –
+  per Maus/Touch bedienbar, lazy geladen, mit SVG-Fallback und Respektierung
+  von `prefers-reduced-motion`.
+- **Gerätekunde** – „Wusstest du?"-Fakten und Ausrüstungskarten vermitteln
+  spannendes Hintergrundwissen über Technik und Geräte.
 - **Einsatz-Timeline mit Filter** – datenschutzsensibel, ohne Namen, Kennzeichen
   oder private Adressen.
 - **Mitgliedschafts-Finder** – führt Interessierte interaktiv zur passenden
