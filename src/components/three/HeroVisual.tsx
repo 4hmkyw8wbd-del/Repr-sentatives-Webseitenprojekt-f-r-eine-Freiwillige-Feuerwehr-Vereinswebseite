@@ -1,12 +1,9 @@
-import { lazy, Suspense, useEffect, useState } from 'react'
-import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
+import { lazy, Suspense } from 'react'
 import { Icon } from '../ui/Icon'
 
-// Three.js-Szene wird nur bei Bedarf nachgeladen (Code-Splitting).
-const HeroScene = lazy(() => import('./HeroScene'))
+const Feuerwehr3DDiorama = lazy(() => import('./Feuerwehr3DDiorama'))
 
-/** Statischer SVG-Fallback: keine Bewegung, kein WebGL nötig. */
-function HeroFallback() {
+function DiagramFallback() {
   const orbit: { name: Parameters<typeof Icon>[0]['name']; cls: string }[] = [
     { name: 'funkmelder', cls: 'top-2 left-1/2 -translate-x-1/2' },
     { name: 'hydrant', cls: 'top-1/3 -right-2' },
@@ -15,8 +12,8 @@ function HeroFallback() {
     { name: 'blaulicht', cls: 'top-1/3 -left-2' },
   ]
   return (
-    <div className="relative mx-auto grid aspect-square w-full max-w-md place-items-center">
-      <div className="absolute inset-6 rounded-full border border-signal-400/20" />
+    <div className="relative mx-auto grid aspect-square w-full max-w-xl place-items-center">
+      <div className="absolute inset-6 rounded-full border border-signal-400/20 animate-pulse-soft motion-reduce:animate-none" />
       <div className="absolute inset-12 rounded-full border border-signal-400/10" />
       <div className="grid h-32 w-32 place-items-center rounded-2xl bg-navy-700/80 shadow-xl ring-1 ring-white/10">
         <Icon name="schild" className="h-16 w-16 text-fire-500" />
@@ -29,42 +26,17 @@ function HeroFallback() {
           <Icon name={o.name} className="h-5 w-5" />
         </span>
       ))}
+      <p className="absolute bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs text-offwhite/40">
+        3D-Diorama wird geladen …
+      </p>
     </div>
   )
 }
 
 export function HeroVisual() {
-  const reducedMotion = usePrefersReducedMotion()
-  const [enable3D, setEnable3D] = useState(false)
-
-  useEffect(() => {
-    if (reducedMotion) return
-    // Nur aktivieren, wenn WebGL verfügbar ist.
-    try {
-      const canvas = document.createElement('canvas')
-      const gl =
-        canvas.getContext('webgl') || canvas.getContext('experimental-webgl')
-      if (gl) setEnable3D(true)
-    } catch {
-      setEnable3D(false)
-    }
-  }, [reducedMotion])
-
   return (
-    <div className="relative aspect-square w-full max-w-md mx-auto">
-      {enable3D ? (
-        <>
-          <Suspense fallback={<HeroFallback />}>
-            <HeroScene />
-          </Suspense>
-          {/* Interaktionshinweis + Fiktiv-Kennzeichnung */}
-          <span className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-navy-900/70 px-3 py-1 text-xs text-offwhite/70 ring-1 ring-white/10 backdrop-blur">
-            Ziehen zum Drehen · stilisiertes 3D-Modell (fiktiv)
-          </span>
-        </>
-      ) : (
-        <HeroFallback />
-      )}
-    </div>
+    <Suspense fallback={<DiagramFallback />}>
+      <Feuerwehr3DDiorama />
+    </Suspense>
   )
 }
